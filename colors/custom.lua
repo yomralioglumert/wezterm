@@ -1,26 +1,26 @@
--- A custom vibrant color palette with lots of pink, orange, and green!
+-- Neon-noir palette: lively accents over a calmer dark base.
 local vibrant = {
-   pink      = '#FF1E89', -- vibrant pink
-   orange    = '#FF7A00', -- vibrant orange
-   green     = '#32FF6A', -- neon green
-   red       = '#FF3A5C', -- bright red
-   yellow    = '#FFE600', -- bright yellow
-   purple    = '#B239FF', -- electric purple
-   cyan      = '#00E5FF', -- neon cyan
-   blue      = '#0070FF', -- electric blue
-   
-   text      = '#F0F0F0',
-   subtext1  = '#D0D0D0',
-   subtext0  = '#A0A0A0',
-   overlay2  = '#707070',
-   overlay1  = '#505050',
-   overlay0  = '#404040',
-   surface2  = '#2A2A2A',
-   surface1  = '#1E1E1E',
-   surface0  = '#141414',
-   base      = '#0C0C0C',
-   mantle    = '#080808',
-   crust     = '#040404',
+   pink = '#FF4FD8',
+   coral = '#FF6B7A',
+   orange = '#FFB86B',
+   green = '#57E389',
+   yellow = '#F9E076',
+   purple = '#B877FF',
+   cyan = '#4FE9F5',
+   blue = '#60A5FA',
+
+   text = '#F6F3FF',
+   subtext1 = '#D6D0EA',
+   subtext0 = '#ADA7C7',
+   overlay2 = '#7D7896',
+   overlay1 = '#625D78',
+   overlay0 = '#49445E',
+   surface2 = '#37324A',
+   surface1 = '#29243A',
+   surface0 = '#1D192B',
+   base = '#100E1A',
+   mantle = '#0B0A12',
+   crust = '#07060B',
 }
 
 local colorscheme = {
@@ -28,36 +28,35 @@ local colorscheme = {
    background = vibrant.base,
    cursor_bg = vibrant.pink,
    cursor_border = vibrant.pink,
-   cursor_fg = vibrant.base,
-   selection_bg = vibrant.surface2,
+   cursor_fg = vibrant.crust,
+   selection_bg = '#3E335F',
    selection_fg = vibrant.text,
-   
-   -- We're injecting our super vibrant colors into the terminal's standard palette
+
    ansi = {
-      vibrant.surface1, -- black
-      vibrant.red,      -- red
-      vibrant.green,    -- green
-      vibrant.yellow,   -- yellow
-      vibrant.blue,     -- blue
-      vibrant.pink,     -- magenta
-      vibrant.cyan,     -- cyan
-      vibrant.subtext0, -- white
+      vibrant.surface1,
+      vibrant.coral,
+      vibrant.green,
+      vibrant.yellow,
+      vibrant.blue,
+      vibrant.purple,
+      vibrant.cyan,
+      vibrant.subtext1,
    },
    brights = {
-      vibrant.overlay0, -- black
-      '#FF6382',        -- bright red
-      '#66FF9F',        -- bright green
-      '#FFEE5E',        -- bright yellow
-      '#4D9CFF',        -- bright blue
-      '#FF5EAE',        -- bright magenta (pink)
-      '#5EF0FF',        -- bright cyan
-      vibrant.text,     -- white
+      vibrant.overlay1,
+      '#FF8A9A',
+      '#8CFFB8',
+      '#FFF2A6',
+      '#8CC7FF',
+      '#D5A6FF',
+      '#8FF7FF',
+      vibrant.text,
    },
    tab_bar = {
-      background = 'rgba(0, 0, 0, 0.6)',
+      background = 'rgba(7, 6, 11, 0.72)',
       active_tab = {
          bg_color = vibrant.surface2,
-         fg_color = vibrant.pink,
+         fg_color = vibrant.text,
       },
       inactive_tab = {
          bg_color = vibrant.surface0,
@@ -68,11 +67,11 @@ local colorscheme = {
          fg_color = vibrant.text,
       },
       new_tab = {
-         bg_color = vibrant.base,
-         fg_color = vibrant.text,
+         bg_color = vibrant.mantle,
+         fg_color = vibrant.purple,
       },
       new_tab_hover = {
-         bg_color = vibrant.mantle,
+         bg_color = vibrant.surface1,
          fg_color = vibrant.text,
          italic = true,
       },
@@ -81,9 +80,13 @@ local colorscheme = {
    indexed = {
       [16] = vibrant.orange,
       [17] = vibrant.pink,
+      [18] = vibrant.surface0,
+      [19] = vibrant.surface1,
+      [20] = vibrant.surface2,
+      [21] = vibrant.purple,
    },
    scrollbar_thumb = vibrant.surface2,
-   split = vibrant.pink,
+   split = vibrant.purple,
    compose_cursor = vibrant.orange,
 }
 

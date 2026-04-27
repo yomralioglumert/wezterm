@@ -33,11 +33,12 @@ return {
    use_fancy_tab_bar = false,
    tab_max_width = 25,
    show_tab_index_in_tab_bar = false,
+   show_new_tab_button_in_tab_bar = true,
    switch_to_last_active_tab_when_closing_tab = true,
 
    -- command palette
-   command_palette_fg_color = '#b4befe',
-   command_palette_bg_color = '#11111b',
+   command_palette_fg_color = '#f6f3ff',
+   command_palette_bg_color = '#100e1a',
    command_palette_font_size = 12,
    command_palette_rows = 25,
 
@@ -48,20 +49,19 @@ return {
       top = 10,
       bottom = 7.5,
    },
+   window_background_opacity = 0.96,
+   macos_window_background_blur = 18,
    adjust_window_size_when_changing_font_size = false,
    window_close_confirmation = 'NeverPrompt',
    window_frame = {
-      active_titlebar_bg = '#090909',
+      active_titlebar_bg = '#07060b',
+      inactive_titlebar_bg = '#100e1a',
       -- font = fonts.font,
       -- font_size = fonts.font_size,
    },
-   -- inactive_pane_hsb = {
-   --    saturation = 0.9,
-   --    brightness = 0.65,
-   -- },
    inactive_pane_hsb = {
-      saturation = 1,
-      brightness = 1,
+      saturation = 0.82,
+      brightness = 0.68,
    },
 
    visual_bell = {

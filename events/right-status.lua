@@ -25,6 +25,8 @@ local M = {}
 
 local ICON_SEPARATOR = nf.oct_dash
 local ICON_DATE = nf.fa_calendar
+local ICON_WORKSPACE = nf.md_briefcase_variant
+local ICON_DOMAIN = nf.md_lan_connect
 
 ---@type string[]
 local discharging_icons = {
@@ -56,14 +58,22 @@ local charging_icons = {
 ---@type table<string, Cells.SegmentColors>
 -- stylua: ignore
 local colors = {
-   date      = { fg = '#fab387', bg = 'rgba(0, 0, 0, 0.4)' },
-   battery   = { fg = '#f9e2af', bg = 'rgba(0, 0, 0, 0.4)' },
-   separator = { fg = '#74c7ec', bg = 'rgba(0, 0, 0, 0.4)' }
+   workspace = { fg = '#57E389', bg = 'rgba(7, 6, 11, 0.72)' },
+   domain    = { fg = '#B877FF', bg = 'rgba(7, 6, 11, 0.72)' },
+   date      = { fg = '#FFB86B', bg = 'rgba(7, 6, 11, 0.72)' },
+   battery   = { fg = '#F9E076', bg = 'rgba(7, 6, 11, 0.72)' },
+   separator = { fg = '#B877FF', bg = 'rgba(7, 6, 11, 0.72)' }
 }
 
 local cells = Cells:new()
 
 cells
+   :add_segment('workspace_icon', ICON_WORKSPACE .. '  ', colors.workspace, attr(attr.intensity('Bold')))
+   :add_segment('workspace_text', '', colors.workspace, attr(attr.intensity('Bold')))
+   :add_segment('separator_workspace', ' ' .. ICON_SEPARATOR .. '  ', colors.separator)
+   :add_segment('domain_icon', ICON_DOMAIN .. '  ', colors.domain, attr(attr.intensity('Bold')))
+   :add_segment('domain_text', '', colors.domain, attr(attr.intensity('Bold')))
+   :add_segment('separator_domain', ' ' .. ICON_SEPARATOR .. '  ', colors.separator)
    :add_segment('date_icon', ICON_DATE .. '  ', colors.date, attr(attr.intensity('Bold')))
    :add_segment('date_text', '', colors.date, attr(attr.intensity('Bold')))
    :add_segment('separator', ' ' .. ICON_SEPARATOR .. '  ', colors.separator)
@@ -101,15 +111,37 @@ M.setup = function(opts)
 
    wezterm.on('update-right-status', function(window, _pane)
       local battery_text, battery_icon = battery_info()
+      local domain = 'local'
+      local ok, active_domain = pcall(function()
+         return window:active_pane():get_domain_name()
+      end)
+
+      if ok and active_domain then
+         domain = active_domain
+      end
 
       cells
+         :update_segment_text('workspace_text', window:active_workspace())
+         :update_segment_text('domain_text', domain)
          :update_segment_text('date_text', wezterm.strftime(valid_opts.date_format))
          :update_segment_text('battery_icon', battery_icon)
          :update_segment_text('battery_text', battery_text)
 
       window:set_right_status(
          wezterm.format(
-            cells:render({ 'date_icon', 'date_text', 'separator', 'battery_icon', 'battery_text' })
+            cells:render({
+               'workspace_icon',
+               'workspace_text',
+               'separator_workspace',
+               'domain_icon',
+               'domain_text',
+               'separator_domain',
+               'date_icon',
+               'date_text',
+               'separator',
+               'battery_icon',
+               'battery_text',
+            })
          )
       )
    end)

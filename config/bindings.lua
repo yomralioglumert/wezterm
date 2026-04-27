@@ -178,6 +178,16 @@ local keys = {
       mods = mod.SUPER_REV,
       action = act.SplitHorizontal({ domain = 'CurrentPaneDomain' }),
    },
+   {
+      key = 'v',
+      mods = 'CTRL|OPT|CMD',
+      action = act.SplitVertical({ domain = 'CurrentPaneDomain' }),
+   },
+   {
+      key = 'h',
+      mods = 'CTRL|OPT|CMD',
+      action = act.SplitHorizontal({ domain = 'CurrentPaneDomain' }),
+   },
 
    -- panes: zoom+close pane
    { key = 'Enter', mods = mod.SUPER,     action = act.TogglePaneZoomState },
